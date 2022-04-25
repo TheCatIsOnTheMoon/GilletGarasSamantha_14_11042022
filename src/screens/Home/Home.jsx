@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { states } from '../../constants/states';
+import people from '../../icons/people.svg';
+// import { states } from '../../constants/states';
 
 function Home() {
   return (
@@ -7,8 +8,12 @@ function Home() {
       <div className="title">
         <h1>HRnet</h1>
       </div>
-      <div className="container">
-        <Link to={'/employee-list'}>View Current Employees</Link>
+      <div className="container glass-effect">
+        <Link to={'/employee-list'}>
+          <img src={people} alt="people icon" id="people-icon" />
+          View Current Employees
+        </Link>
+        <div className="line"></div>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee">
           <label htmlFor="first-name">First Name</label>
