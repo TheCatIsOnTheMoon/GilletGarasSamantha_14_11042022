@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+//
 import DatePicker from 'react-date-picker';
+
+//
 import people from '../../icons/people.svg';
 
 function Home() {
@@ -245,6 +249,16 @@ function Home() {
     },
   ];
 
+  let statesList =
+    states.length > 0 &&
+    states.map((item, i) => {
+      return (
+        <option key={i} value={item.id}>
+          {item.name}
+        </option>
+      );
+    });
+
   return (
     <>
       <div className="title">
@@ -292,7 +306,9 @@ function Home() {
             <input id="city" type="text" />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
+            <select name="state" id="state">
+              {statesList}
+            </select>
 
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" />
