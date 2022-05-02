@@ -49,8 +49,24 @@ background-position: 0 0,40px 40px;
   align-items: center;
   justify-content: center;
 
-  max-width: 30rem;
+  max-width: 40rem;
   margin : 0 auto;
+}
+
+.container_table h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  margin : 0 auto;
+  margin-bottom: 3rem;
+}
+
+.table {
+  background-color: white;
+
 }
 
 .glass-effect{
@@ -63,6 +79,10 @@ background-position: 0 0,40px 40px;
     width: 100%;
     min-height: 70px;
     mix-blend-mode: hard-light;
+}
+
+.link_home {
+  margin-top: 3rem;
 }
 
 a, link {
