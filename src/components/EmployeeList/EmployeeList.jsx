@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useMemo, useState } from 'react';
+
+import { useSelector } from 'react-redux';
+
 import DataTable from 'react-data-table-component';
 import styled from 'styled-components';
+
+//
+// import { data } from '../../data/mockedData';
 
 // styled components
 const TextField = styled.input`
@@ -18,19 +24,6 @@ const TextField = styled.input`
   &:hover {
     cursor: pointer;
   }
-`;
-
-const ClearButton = styled.button`
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  height: 34px;
-  width: 32px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 // construction table
@@ -85,35 +78,8 @@ const columns = [
 // data
 // const employees = JSON.parse(localStorage.getItem('employees'));
 
-const data = [
-  {
-    id: 1,
-    firstName: 'Marie',
-    lastName: 'Durand',
-    startDate: '1988',
-    department: 'Sales',
-    dateOfBirth: '06/07/1960',
-    street: 'the street',
-    city: 'thatcity',
-    state: 'state of freedom',
-    zipCode: '4242',
-  },
-  {
-    id: 2,
-    firstName: 'Frank',
-    lastName: 'Miller',
-    startDate: '1992',
-    department: 'Sales',
-    dateOfBirth: '06/07/1965',
-    street: 'other street',
-    city: 'thatothercity',
-    state: 'state',
-    zipCode: '1234',
-  },
-];
-
 // filter
-const FilterComponent = ({ filterText, onFilter, onClear }) => (
+const FilterComponent = ({ filterText, onFilter }) => (
   <>
     <TextField
       id="search"
@@ -123,24 +89,25 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
       value={filterText}
       onChange={onFilter}
     />
-    <ClearButton type="button" onClick={onClear}>
-      X
-    </ClearButton>
   </>
 );
 
 function EmployeeList() {
   const [filterText, setFilterText] = useState('');
-  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = data.filter(
-    (item) =>
-      item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
-  );
+  const [resetPagination, setResetPagination] = useState(false);
+
+  // get data from store
+  const data = useSelector((state) => state.employees);
+
+  // const filteredData = data.filter(
+  //   (item) =>
+  //     item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
+  // );
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {
       if (filterText) {
-        setResetPaginationToggle(!resetPaginationToggle);
+        setResetPagination(!resetPagination);
         setFilterText('');
       }
     };
@@ -152,19 +119,18 @@ function EmployeeList() {
         filterText={filterText}
       />
     );
-  }, [filterText, resetPaginationToggle]);
+  }, [filterText, resetPagination]);
 
   return (
     <div id="employee-div" className="container_table">
       <h1>Current Employees</h1>
-      {/* <table id="employee-table" class="display"></table> */}
 
       <div className="table">
         <DataTable
           columns={columns}
           data={data}
           pagination
-          paginationResetDefaultPage={resetPaginationToggle} // reset pagination to page 1
+          paginationResetDefaultPage={resetPagination} // reset pagination to page 1
           subHeader
           subHeaderComponent={subHeaderComponentMemo}
           persistTableHead
