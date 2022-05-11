@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import { data } from './data/mockedData';
-import { addNewEmployeeReducer } from './reducers/userReducers';
+import { addNewEmployeeReducer } from './reducers/employeeReducer';
 
 const reducer = addNewEmployeeReducer;
 

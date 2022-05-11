@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //screens
 import Home from '../screens/Home/Home';
-import EmployeeList from '../components/EmployeeList/EmployeeList';
+import EmployeeList from '../screens/EmployeeList/EmployeeList';
 
 /**
  * The AppRouter function returns a Router component

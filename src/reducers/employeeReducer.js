@@ -1,4 +1,4 @@
-import { ADD_NEW_EMPLOYEE } from '../constants/reduxConstants';
+import { ADD_NEW_EMPLOYEE } from '../constants/employeeConstants';
 
 // UPDATE
 export const addNewEmployeeReducer = (state = {}, action) => {

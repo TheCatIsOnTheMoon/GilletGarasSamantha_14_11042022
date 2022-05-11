@@ -1,7 +1,7 @@
 import {
   ADD_NEW_EMPLOYEE,
   ADD_NEW_EMPLOYEE_FAIL,
-} from '../constants/userConstants';
+} from '../constants/employeeConstants';
 
 export const addNewEmployee = (newEmployee) => async (dispatch) => {
   try {

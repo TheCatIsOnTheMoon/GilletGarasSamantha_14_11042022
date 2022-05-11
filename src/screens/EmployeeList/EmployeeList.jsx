@@ -6,9 +6,6 @@ import { useSelector } from 'react-redux';
 import DataTable from 'react-data-table-component';
 import styled from 'styled-components';
 
-//
-// import { data } from '../../data/mockedData';
-
 // styled components
 const TextField = styled.input`
   height: 32px;
@@ -75,9 +72,6 @@ const columns = [
   },
 ];
 
-// data
-// const employees = JSON.parse(localStorage.getItem('employees'));
-
 // filter
 const FilterComponent = ({ filterText, onFilter }) => (
   <>
@@ -99,10 +93,10 @@ function EmployeeList() {
   // get data from store
   const data = useSelector((state) => state.employees);
 
-  // const filteredData = data.filter(
-  //   (item) =>
-  //     item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
-  // );
+  const filteredData = data.filter(
+    (item) =>
+      item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   const subHeaderComponentMemo = useMemo(() => {
     const handleClear = () => {

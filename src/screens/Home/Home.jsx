@@ -1,23 +1,29 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
 //
+import Modal from 'react-modal-sgg';
 import DatePicker from 'react-date-picker';
 //
 import people from '../../icons/people.svg';
 //
+
+import { addNewEmployee } from '../../actions/employeeActions';
 import { states } from '../../data/statesList';
 import { departments } from '../../data/departmentsList';
-//
-import { data } from '../../data/mockedData';
 
 function Home() {
   const [value, onChange] = useState(new Date());
+  const [showModal, setShowModal] = useState(false);
+
+  // get data from store
+  const data = useSelector((state) => state.employees);
+
+  const hideModal = () => showModal && setShowModal(false);
 
   const dispatch = useDispatch();
 
-  function saveEmployee() {
+  function submitNewEmployee(data) {
     const firstName = document.getElementById('first-name');
     const lastName = document.getElementById('last-name');
     const dateOfBirth = document.getElementById('date-of-birth');
@@ -29,6 +35,7 @@ function Home() {
     const zipCode = document.getElementById('zip-code');
 
     const newEmployee = {
+      id: data.length + 1,
       firstName: firstName.value,
       lastName: lastName.value,
       dateOfBirth: dateOfBirth.value,
@@ -40,31 +47,11 @@ function Home() {
       zipCode: zipCode.value,
     };
 
-    console.log(newEmployee);
+    //add to store
+    dispatch(addNewEmployee(newEmployee));
+
+    return setShowModal(true);
   }
-
-  // const employees = useSelector((state) => state.employees);
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  //   control,
-  // } = useForm({ mode: 'onTouched', resolver: yupResolver(schema) });
-
-  // const onSubmitForm = (data) => {
-  //   data.id = employees.length + 1;
-  //   data.dateOfBirth = getDate(data.dateOfBirth);
-  //   data.startDate = getDate(data.startDate);
-  //   //add new employee to state
-  //   dispatch(employeeAdded(data));
-  //   //open modal confirmation
-  //   setIsOpen(1);
-  // };
-  // const doAddNewEmployee = () => {
-  //   setIsOpen(0);
-  //   reset();
-  // };
 
   // state list
   let statesList =
@@ -149,13 +136,26 @@ function Home() {
           </select>
         </form>
 
-        <button onClick={saveEmployee} id="save-btn" className="button">
+        <button onClick={submitNewEmployee} id="save-btn" className="button">
+          Save
+        </button>
+
+        <button
+          onClick={() => setShowModal(true)}
+          id="save-btn"
+          className="button"
+        >
           Save
         </button>
       </div>
-      {/* <div id="confirmation" className="modal">
-        Employee Created!
-      </div> */}
+      <Modal
+        id="confirmation"
+        className="modal"
+        show={showModal}
+        onClickCloseBtn={hideModal}
+      >
+        <h3>Employee Created!</h3>
+      </Modal>
     </>
   );
 }
