@@ -5,9 +5,6 @@ import {
 
 export const addNewEmployee = (newEmployee) => async (dispatch) => {
   try {
-    console.log('addNewEmployee params :', newEmployee);
-    dispatch({ type: ADD_NEW_EMPLOYEE });
-
     dispatch({ type: ADD_NEW_EMPLOYEE, payload: newEmployee });
   } catch (error) {
     alert('Sorry, we are unable to add a new employee.');

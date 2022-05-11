@@ -1,22 +1,17 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//
+// packages
 import Modal from 'react-modal-sgg';
 import Calendar from 'react-select-date';
-
+// img
 import iconCalendar from './icon_calendar.svg';
-
+// action redux
 import { addNewEmployee } from '../../actions/employeeActions';
+// data
 import { states } from '../../data/statesList';
 import { departments } from '../../data/departmentsList';
 
-/**
- * @param {Number} num number
- * @returns number if length 1 returns with zero
- */
-export function addZero(num) {
-  return num > 9 ? num : '0' + num;
-}
+/* Getting the current date and formatting it to be used in the calendar. */
 const currentDate =
   new Date().getFullYear() +
   '-' +
@@ -24,20 +19,29 @@ const currentDate =
   '-' +
   new Date().getDate();
 
+/**
+ * calendar utility
+ * @param {Number} num number
+ * @returns number if length 1 returns with zero
+ */
+function addZero(num) {
+  return num > 9 ? num : '0' + num;
+}
+
 function Form() {
-  // calendar
+  // calendar states
   const [showcld_dateOfBirth, setShowcld_dateOfBirth] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [showcld_datestart, setShowcld_datestart] = useState(false);
   const [datestart, setDateStart] = useState(new Date());
-  // modal
+  // modal states
   const [showModal, setShowModal] = useState(false);
 
-  // get data from store
-  const data = useSelector((state) => state.employees);
-
+  //modal use
   const hideModal = () => showModal && setShowModal(false);
 
+  // redux utilities
+  const data = useSelector((state) => state.employees);
   const dispatch = useDispatch();
 
   function submitNewEmployee(data) {
@@ -64,33 +68,41 @@ function Form() {
       zipCode: zipCode.value,
     };
 
-    //add to store
+    console.log(newEmployee);
+
+    //add new employee to store
     dispatch(addNewEmployee(newEmployee));
 
     return setShowModal(true);
   }
 
-  // state list
-  let statesList =
-    states.length > 0 &&
-    states.map((item, i) => {
-      return (
-        <option key={i} value={item.id}>
-          {item.name}
-        </option>
-      );
-    });
+  /**
+   * It takes a list of objects and returns a list of options
+   * @param {list} array
+   * @returns The newlist is being returned.
+   */
+  const displayList = (list) => {
+    const newlist =
+      list.length > 0 &&
+      list.map((item, i) => {
+        return (
+          <option key={i} value={item.id}>
+            {item.name}
+          </option>
+        );
+      });
+    return newlist;
+  };
 
-  // state list
-  let departmentsList =
-    departments.length > 0 &&
-    departments.map((item, i) => {
-      return (
-        <option key={i} value={item.id}>
-          {item.name}
-        </option>
-      );
+  /**
+   * When the user clicks the button, scroll to the top of the page.
+   */
+  const returnToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
+  };
 
   return (
     <>
@@ -105,7 +117,6 @@ function Form() {
           <label htmlFor="last-name">Last Name</label>
           <input type="text" id="last-name" />
 
-          {/* ------------------------DATES PIKERS -----------------------------*/}
           <label htmlFor="date-of-birth">Date of Birth</label>
           <div className="calendar-input">
             <div
@@ -121,6 +132,7 @@ function Form() {
                   '-' +
                   dateOfBirth?.getFullYear()
                 }
+                id="date-of-birth"
               />
               <img
                 src={iconCalendar}
@@ -157,6 +169,7 @@ function Form() {
                   '-' +
                   datestart?.getFullYear()
                 }
+                id="start-date"
               />
               <img
                 src={iconCalendar}
@@ -189,7 +202,7 @@ function Form() {
 
             <label htmlFor="state">State</label>
             <select name="state" id="state">
-              {statesList}
+              {displayList(states)}
             </select>
 
             <label htmlFor="zip-code">Zip Code</label>
@@ -198,21 +211,20 @@ function Form() {
 
           <label htmlFor="department">Department</label>
           <select name="department" id="department">
-            {departmentsList}
+            {displayList(departments)}
           </select>
         </form>
 
-        <button onClick={submitNewEmployee} id="save-btn" className="button">
-          Save
-        </button>
-
-        {/* <button
-          onClick={() => setShowModal(true)}
-          id="save-btn"
+        <button
+          onClick={() => {
+            submitNewEmployee(data); // broken ?
+            returnToTop();
+            setShowModal(true);
+          }}
           className="button"
         >
           Save
-        </button> */}
+        </button>
       </div>
       <Modal
         id="confirmation"
@@ -220,7 +232,9 @@ function Form() {
         show={showModal}
         onClickCloseBtn={hideModal}
       >
-        <h3>Employee Created!</h3>
+        <h3>
+          New <strong>Employee</strong> Created!
+        </h3>
       </Modal>
     </>
   );
