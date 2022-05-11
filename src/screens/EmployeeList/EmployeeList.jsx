@@ -116,22 +116,24 @@ function EmployeeList() {
   }, [filterText, resetPagination]);
 
   return (
-    <div id="employee-div" className="container_table">
-      <h1>Current Employees</h1>
+    <div id="employee-div" className="container border-radius box-shadow">
+      <h2>
+        Current <strong>Employees</strong>{' '}
+      </h2>
 
       <div className="table">
         <DataTable
           columns={columns}
           data={data}
           pagination
-          paginationResetDefaultPage={resetPagination} // reset pagination to page 1
+          paginationResetDefaultPage={resetPagination}
           subHeader
           subHeaderComponent={subHeaderComponentMemo}
           persistTableHead
         />
       </div>
 
-      <Link to="/" className="link_home glass-effect">
+      <Link to="/" className="button">
         Home
       </Link>
     </div>

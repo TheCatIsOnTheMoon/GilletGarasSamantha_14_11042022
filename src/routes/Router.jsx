@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-//screens
+//
+import Navbar from '../components/Navbar/Navbar';
 import Home from '../screens/Home/Home';
 import EmployeeList from '../screens/EmployeeList/EmployeeList';
 
@@ -15,6 +16,7 @@ function AppRouter() {
   return (
     <Router>
       <main>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/employee-list" element={<EmployeeList />} />

@@ -1,50 +1,131 @@
 /* colors variables----------*/
 :root {
-    --color-primary: #2d793c;
-    --color-secondary: #17771d;
-    --color-tertiary: #e7ffe9;
+  --color-primary: #21ba45;
+  --color-primary--very-light: #e1f7e671;
+  --color-secondary: #747474;
+  --color-tertiary: #ffffff;
+  --color-quaternary: #292b2c;
 }
 
 /* base ------------------*/
 * {
-    box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', "DM Sans", sans-serif;
-    color: var(--color-primary);
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+
+  font-family: 'Lato', 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+  font-weight: 800;
+
+  background-color: rgb(33, 186, 69);
+  fill: rgba(255, 255, 255, 0.32);
+  background-size: 200px 300px;
+  background-repeat:repeat-y;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='Layer_2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill-opacity='1' style='enable-background:new 0 0 500 500;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0{fill:rgba(255, 255, 255, 0.32);} %3C/style%3E%3Cg id='Layer_2_2_'%3E%3Cpath class='st0' d='M208.1,208c0,22.4,18.1,40.5,40.5,40.5C248.6,226.1,230.4,208,208.1,208z M291.9,208 c-22.4,0-40.5,18.1-40.5,40.5C273.8,248.5,291.9,230.4,291.9,208z M291.9,292c0-22.4-18.1-40.5-40.5-40.5 C251.4,273.9,269.6,292,291.9,292z M208.1,292c22.4,0,40.5-18.1,40.5-40.5C226.2,251.5,208.1,269.6,208.1,292z'/%3E%3C/g%3E%3C/svg%3E");
+  /*Modify version of : Free Pinwheel SVG provided by SVGeez.com - CC 4.0 License - © 2019 Megan Young */
 }
 
 main {
-    max-width: 1400px;
-    margin: auto;
-    padding: 2rem 0;
+  max-width: 1400px;
+  margin: auto;
+  padding: 0;
 }
 
-h1, h2 {
-  color: white;
+h2 {
+  color: var(--color-secondary);
 }
 
-#background {
+a,
+link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-tertiary);
+}
+
+a:hover,
+link:hover {
+  color: var(--color-secondary);
+}
+
+a:visited,
+link:visited {
+  color: var(--color-tertiary);
+}
+
+h1 {
+  color: var(--color-tertiary);
+}
+
+h2 {
+  color: var(--color-quaternary);
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-top: 1.5rem;
+}
+
+strong {
+  color: var(--color-primary);
+}
+
+.button {
+  margin: 3rem auto 2rem auto;
+  padding: 0.5rem 4rem;
+
+  border-radius: 5px;
+  border-style: none;
   background-color: var(--color-primary);
-opacity: 1;
-background-image:  radial-gradient(var(--color-secondary) 2px, transparent 2px), radial-gradient(var(--color-secondary) 2px, var(--color-primary) 2px);
-background-size: 80px 80px;
-background-position: 0 0,40px 40px;
+  color: var(--color-quaternary) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+
+  box-shadow: 0 5px 5px rgb(0 0 0 / 5%), 0 10px 15px rgb(0 0 0 / 10%);
+
+  cursor: pointer;
 }
 
-.title {
+.icon {
+  height: 2rem;
+  margin: auto 0.8rem auto 3rem;
+}
+
+/* utilities ---------*/
+
+.border-radius {
+  border-radius: 5px;
+}
+
+.box-shadow {
+  box-shadow: 0 5px 5px rgb(0 0 0 / 20%), 0 10px 15px rgb(0 0 0 / 20%);
+}
+
+/* details global ---------- */
+
+.navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
+  background-color: var(--color-quaternary);
+  color: var(--color-tertiary);
+
+  padding: 0 2rem;
   margin-bottom: 2rem;
+}
+
+nav {
+  display: flex;
 }
 
 .container {
@@ -53,107 +134,52 @@ background-position: 0 0,40px 40px;
   align-items: center;
   justify-content: center;
 
-  max-width: 40rem;
-  margin : 0 auto;
+  background-color: var(--color-tertiary);
+
+  width: fit-content;
+  margin: 0 auto 2rem auto;
+  padding: 2rem;
 }
 
-.container_table h1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-
-  margin : 0 auto;
-  margin-bottom: 3rem;
-}
-
-.table {
-  background-color: white;
-
-}
-
-.glass-effect{
-    border-radius: 25px;
-    backdrop-filter: blur(16.8px);
-    padding: 2rem;
-    box-shadow: 0 2px 10px rgb(0 0 0 / 10%), 0 10px 15px rgb(0 0 0 / 20%);
-    box-sizing: border-box;
-    background-image: linear-gradient(45deg, rgba(255,255,255,0.45), rgba(255,255,255,0.45));
-    width: 100%;
-    min-height: 70px;
-    mix-blend-mode: hard-light;
-}
-
-.link_home {
-  margin-top: 3rem;
-}
-
-a, link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: var(--color-secondary);
-}
-
-a:hover, link:hover {
-   color: var(--color-secondary);
-}
-
-a:visited, link:visited {
-    color: var(--color-secondary);
-}
-
-#people-icon {
-    height: 2rem;
-    margin-right: .5rem;
-}
-
-.line {
-    height: .2rem;
-    width: 100%;
-    background-color: var(--color-primary);
-    margin: 1.5rem .5rem .5rem .5rem;
+form {
+  width: 40rem;
+  padding: 0 3rem;
+  margin: 0 auto;
 }
 
 label {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 10px;
-  color: var(--color-secondary)
-}
-
-.address {
-  margin-top: 10px;
-}
-
-#save-btn {
-  margin: 3rem auto 2rem auto;
-}
-
-.button {
   display: flex;
-  align-items: center;
-  background-color: var(--color-tertiary);
-  border: 1px solid var(--color-primary);
-  border-radius: 11px;
-  color: var(--color-primary);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 800;
-  padding: .5rem 5rem;
-  transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+  margin-top: 1.5rem;
+  margin-bottom: 0.2rem;
+
+  color: var(--color-quaternary);
+  font-size: 0.9em;
+  font-weight: 500;
 }
 
-.button:active {
-  background-color: #86c794;
-  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
-  color: #FFFFFF;
+input,
+select {
+  padding: .4rem;
+  border-style: groove;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #dad6d6;
+  background-color: var(--color-primary--very-light);
 }
 
-.button:hover {
-  background-color: #a7c5ac;
-  border-color: var(--color-tertiary);
-  color: #FFFFFF;
+fieldset {
+  margin: 2rem auto;
+  padding: 0 2rem 2rem 2rem;
+}
+
+legend {
+  padding: 0 1rem;
+  font-size: 1em;
+}
+
+.date-picker {
+  min-width: 9rem;
+  font-size: 0.9em;
+  font-weight: 500;
+  background-color: var(--color-primary--very-light);
 }
