@@ -2,14 +2,35 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 //
 import Modal from 'react-modal-sgg';
-import DatePicker from 'react-date-picker';
+import Calendar from 'react-select-date';
+
+import iconCalendar from './icon_calendar.svg';
 
 import { addNewEmployee } from '../../actions/employeeActions';
 import { states } from '../../data/statesList';
 import { departments } from '../../data/departmentsList';
 
+/**
+ * @param {Number} num number
+ * @returns number if length 1 returns with zero
+ */
+export function addZero(num) {
+  return num > 9 ? num : '0' + num;
+}
+const currentDate =
+  new Date().getFullYear() +
+  '-' +
+  (new Date().getMonth() + 1) +
+  '-' +
+  new Date().getDate();
+
 function Form() {
-  const [value, onChange] = useState(new Date());
+  // calendar
+  const [showcld_dateOfBirth, setShowcld_dateOfBirth] = useState(false);
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [showcld_datestart, setShowcld_datestart] = useState(false);
+  const [datestart, setDateStart] = useState(new Date());
+  // modal
   const [showModal, setShowModal] = useState(false);
 
   // get data from store
@@ -84,25 +105,78 @@ function Form() {
           <label htmlFor="last-name">Last Name</label>
           <input type="text" id="last-name" />
 
+          {/* ------------------------DATES PIKERS -----------------------------*/}
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker
-            className="date-picker"
-            id="date-of-birth"
-            onChange={onChange}
-            value={value}
-            format=" M / d / y "
-            calendarIcon={null}
-          />
+          <div className="calendar-input">
+            <div
+              className="position-relative"
+              onClick={() => setShowcld_dateOfBirth(!showcld_dateOfBirth)}
+            >
+              <input
+                readOnly
+                value={
+                  addZero(dateOfBirth?.getDate()) +
+                  '-' +
+                  addZero(dateOfBirth?.getMonth()) +
+                  '-' +
+                  dateOfBirth?.getFullYear()
+                }
+              />
+              <img
+                src={iconCalendar}
+                alt="calendar icon"
+                className="icon calendar-icon"
+              />
+            </div>
+            <div
+              className={`${
+                !showcld_dateOfBirth && 'display-none'
+              } calendar-modal`}
+            >
+              <Calendar
+                defaultValue={{ date: currentDate }}
+                showDateInputField={false}
+                slotInfo={false}
+                onSelect={(date) => setDateOfBirth(date)}
+              />
+            </div>
+          </div>
 
           <label htmlFor="start-date">Start Date</label>
-          <DatePicker
-            className="date-picker"
-            id="start-date"
-            onChange={onChange}
-            value={value}
-            format=" M / d / y "
-            calendarIcon={null}
-          />
+          <div className="calendar-input">
+            <div
+              className="position-relative"
+              onClick={() => setShowcld_datestart(!showcld_datestart)}
+            >
+              <input
+                readOnly
+                value={
+                  addZero(datestart?.getDate()) +
+                  '-' +
+                  addZero(datestart?.getMonth()) +
+                  '-' +
+                  datestart?.getFullYear()
+                }
+              />
+              <img
+                src={iconCalendar}
+                alt="calendar icon"
+                className="icon calendar-icon"
+              />
+            </div>
+            <div
+              className={`${
+                !showcld_datestart && 'display-none'
+              } calendar-modal`}
+            >
+              <Calendar
+                defaultValue={{ date: currentDate }}
+                showDateInputField={false}
+                slotInfo={false}
+                onSelect={(date) => setDateStart(date)}
+              />
+            </div>
+          </div>
 
           <fieldset>
             <legend>Address</legend>

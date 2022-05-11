@@ -102,6 +102,14 @@ strong {
 
 /* utilities ---------*/
 
+.display-none {
+  display: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
 .border-radius {
   border-radius: 5px;
 }
@@ -177,9 +185,34 @@ legend {
   font-size: 1em;
 }
 
-.date-picker {
-  min-width: 9rem;
-  font-size: 0.9em;
-  font-weight: 500;
-  background-color: var(--color-primary--very-light);
+.calendar-input {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.calendar-modal {
+  position: absolute;
+  top: 2.5rem;
+  left: .05rem;
+  z-index: 99;
+}
+
+.calendar-modal:after {
+  content: " ";
+  position: absolute;
+  margin-left: -8px;
+  bottom: 100%;
+  left: 50%;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: -1px;
+  right: -6px;
+  width: 1rem;
+  cursor: pointer;
 }
