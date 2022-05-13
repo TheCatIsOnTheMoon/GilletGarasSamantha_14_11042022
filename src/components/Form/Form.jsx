@@ -70,6 +70,21 @@ function Form() {
       zipCode: zipCode.value,
     };
 
+    if (
+      newEmployee.firstName.length < 2 ||
+      newEmployee.lastName.length < 2 ||
+      newEmployee.dateOfBirth === '' ||
+      newEmployee.startDate === '' ||
+      newEmployee.department.length < 2 ||
+      newEmployee.street.length < 2 ||
+      newEmployee.city.length < 2 ||
+      newEmployee.state.length < 2 ||
+      newEmployee.zipCode === ''
+    ) {
+      alert('You must fill in all the fields to register a new employee.');
+      return false;
+    }
+
     //add new employee to store
     dispatch(addNewEmployee(newEmployee));
     returnToTop();
@@ -94,9 +109,9 @@ function Form() {
         </h2>
         <form action="#" id="create-employee">
           <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" />
+          <input type="text" id="first-name" maxLength={25} />
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" />
+          <input type="text" id="last-name" maxLength={25} />
           <label htmlFor="date-of-birth">Date of Birth</label>
           <div className="calendar-input">
             <div
@@ -173,16 +188,16 @@ function Form() {
             <legend>Address</legend>
 
             <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <input id="street" type="text" maxLength={30} />
 
             <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <input id="city" type="text" maxLength={25} />
 
             <label htmlFor="state">State</label>
             <DropdownList list={states} listId="state" />
 
             <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <input id="zip-code" type="number" maxLength={12} />
           </fieldset>
 
           <label htmlFor="department">Department</label>
@@ -198,6 +213,8 @@ function Form() {
           Save
         </button>
       </div>
+
+      {/* modal confirmation */}
       <Modal
         id="confirmation"
         className="modal"
