@@ -15,8 +15,8 @@ import EmployeeList from '../screens/EmployeeList/EmployeeList';
 function AppRouter() {
   return (
     <Router>
+      <Navbar />
       <main>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/employee-list" element={<EmployeeList />} />

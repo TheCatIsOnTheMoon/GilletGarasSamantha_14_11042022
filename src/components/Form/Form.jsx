@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // packages
 import Modal from 'react-modal-sgg';
 import Calendar from 'react-select-date';
-// img
+// style
+import './style.css';
 import iconCalendar from './icon_calendar.svg';
 // action redux
 import { addNewEmployee } from '../../actions/employeeActions';
@@ -186,6 +187,7 @@ function Form() {
           </div>
           <fieldset>
             <legend>Address</legend>
+            <div className="separator"></div>
 
             <label htmlFor="street">Street</label>
             <input id="street" type="text" maxLength={30} />
@@ -199,6 +201,8 @@ function Form() {
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" maxLength={12} />
           </fieldset>
+
+          <div className="separator"></div>
 
           <label htmlFor="department">Department</label>
           <DropdownList list={departments} listId="department" />

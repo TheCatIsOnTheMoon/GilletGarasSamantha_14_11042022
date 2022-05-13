@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // packages
 import DataTable from 'react-data-table-component';
+// style
+import './style.css';
 
 /* Creating the table. */
 const columns = [
@@ -80,22 +82,25 @@ function EmployeeList() {
       item.lastName.toLowerCase().includes(filterText.toLowerCase())
   );
 
-  const subHeaderComponentMemo = useMemo(() => {
-    const handleClear = () => {
-      if (filteredData) {
-        setResetPagination(!resetPagination);
-        setFilterText('');
-      }
-    };
+  const subHeaderComponentMemo = useMemo(
+    (filteredData) => {
+      const handleClear = () => {
+        if (filteredData) {
+          setResetPagination(!resetPagination);
+          setFilterText('');
+        }
+      };
 
-    return (
-      <FilterComponent
-        onFilter={(e) => setFilterText(e.target.value)}
-        onClear={handleClear}
-        filterText={filterText}
-      />
-    );
-  }, [filterText, resetPagination]);
+      return (
+        <FilterComponent
+          onFilter={(e) => setFilterText(e.target.value)}
+          onClear={handleClear}
+          filterText={filterText}
+        />
+      );
+    },
+    [filterText, resetPagination]
+  );
 
   return (
     <div id="employee-div" className="container border-radius box-shadow">

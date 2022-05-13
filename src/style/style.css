@@ -30,7 +30,7 @@ body {
   background-color: rgb(33, 186, 69);
   fill: rgba(255, 255, 255, 0.32);
   background-size: 200px 300px;
-  background-repeat:repeat-y;
+  background-repeat: repeat-y;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='Layer_2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill-opacity='1' style='enable-background:new 0 0 500 500;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0{fill:rgba(255, 255, 255, 0.32);} %3C/style%3E%3Cg id='Layer_2_2_'%3E%3Cpath class='st0' d='M208.1,208c0,22.4,18.1,40.5,40.5,40.5C248.6,226.1,230.4,208,208.1,208z M291.9,208 c-22.4,0-40.5,18.1-40.5,40.5C273.8,248.5,291.9,230.4,291.9,208z M291.9,292c0-22.4-18.1-40.5-40.5-40.5 C251.4,273.9,269.6,292,291.9,292z M208.1,292c22.4,0,40.5-18.1,40.5-40.5C226.2,251.5,208.1,269.6,208.1,292z'/%3E%3C/g%3E%3C/svg%3E");
   /*Modify version of : Free Pinwheel SVG provided by SVGeez.com - CC 4.0 License - © 2019 Megan Young */
 }
@@ -70,6 +70,17 @@ h2 {
   margin-top: 1.5rem;
 }
 
+@media (max-width: 800px) {
+  h1 {
+    margin-bottom: 0rem;
+  }
+
+  h2 {
+    font-size: 23px;
+    margin-top: 0.5rem;
+  }
+}
+
 strong {
   color: var(--color-primary);
 }
@@ -95,7 +106,32 @@ strong {
   margin: auto 0.8rem auto 3rem;
 }
 
-/* utilities ---------*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-tertiary);
+
+  width: fit-content;
+  max-width: 90vw;
+  margin: 0 auto 2rem auto;
+  padding: 2rem;
+}
+
+.separator {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .separator {
+    display: block;
+    background-color: var(--color-primary);
+    width: 90vw;
+    height: 1px;
+  }
+}
 
 .display-none {
   display: none;
@@ -111,103 +147,4 @@ strong {
 
 .box-shadow {
   box-shadow: 0 5px 5px rgb(0 0 0 / 20%), 0 10px 15px rgb(0 0 0 / 20%);
-}
-
-/* details global ---------- */
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: var(--color-quaternary);
-  color: var(--color-tertiary);
-
-  padding: 0 2rem;
-  margin-bottom: 2rem;
-}
-
-nav {
-  display: flex;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-color: var(--color-tertiary);
-
-  width: fit-content;
-  margin: 0 auto 2rem auto;
-  padding: 2rem;
-}
-
-form {
-  width: 40rem;
-  padding: 0 3rem;
-  margin: 0 auto;
-}
-
-label {
-  display: flex;
-  margin-top: 1.5rem;
-  margin-bottom: 0.2rem;
-
-  color: var(--color-quaternary);
-  font-size: 0.9em;
-  font-weight: 500;
-}
-
-input,
-select {
-  padding: .4rem;
-  border-style: groove;
-  border-radius: 2px;
-  border-width: 1px;
-  border-color: #dad6d6;
-  background-color: var(--color-primary--very-light);
-}
-
-fieldset {
-  margin: 2rem auto;
-  padding: 0 2rem 2rem 2rem;
-}
-
-legend {
-  padding: 0 1rem;
-  font-size: 1em;
-}
-
-.calendar-input {
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-}
-
-.calendar-modal {
-  position: absolute;
-  top: 2.5rem;
-  left: .05rem;
-  z-index: 99;
-}
-
-.calendar-modal:after {
-  content: " ";
-  position: absolute;
-  margin-left: -8px;
-  bottom: 100%;
-  left: 50%;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid white;
-}
-
-.calendar-icon {
-  position: absolute;
-  top: -1px;
-  right: -6px;
-  width: 1rem;
-  cursor: pointer;
 }

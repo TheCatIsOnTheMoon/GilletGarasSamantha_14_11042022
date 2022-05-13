@@ -1,0 +1,83 @@
+form {
+  width: 40rem;
+  padding: 0 3rem;
+  margin: 0 auto;
+}
+
+label {
+  display: flex;
+  margin-top: 1.5rem;
+  margin-bottom: 0.2rem;
+
+  color: var(--color-quaternary);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+input,
+select {
+  padding: 0.4rem;
+  border-style: groove;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #dad6d6;
+  background-color: var(--color-primary--very-light);
+}
+
+fieldset {
+  margin: 2rem auto;
+  padding: 0 2rem 2rem 2rem;
+}
+
+legend {
+  padding: 0 1rem;
+  font-size: 1em;
+}
+
+.calendar-input {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.calendar-modal {
+  position: absolute;
+  top: 2.5rem;
+  left: 0.05rem;
+  z-index: 99;
+}
+
+.calendar-modal:after {
+  content: ' ';
+  position: absolute;
+  margin-left: -8px;
+  bottom: 100%;
+  left: 50%;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: -1px;
+  right: -6px;
+  width: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  form {
+    padding: 0 1rem;
+  }
+
+  form .separator {
+    width: 30vw;
+    margin-top: 0.5rem;
+  }
+
+  fieldset {
+    border: 0;
+    padding: 0;
+  }
+}

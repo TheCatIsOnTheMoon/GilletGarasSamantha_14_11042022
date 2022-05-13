@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-//
+// style
+import './style.css';
 import employeeIcon from './icon_employee.svg';
 import addEmployeeIcon from './icon_add_employee.svg';
 
 function Navbar() {
   return (
-    <div className="navbar box-shadow">
+    <header className="navbar box-shadow">
       <h1>HRnet</h1>
+      <div className="separator"></div>
       <nav>
         <Link to={'/employee-list'}>
           <img
@@ -27,7 +29,7 @@ function Navbar() {
           Add New Employee
         </Link>
       </nav>
-    </div>
+    </header>
   );
 }
 
