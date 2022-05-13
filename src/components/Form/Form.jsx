@@ -10,6 +10,8 @@ import { addNewEmployee } from '../../actions/employeeActions';
 // data
 import { states } from '../../data/statesList';
 import { departments } from '../../data/departmentsList';
+// components
+import DropdownList from '../DropdownList/DropdownList';
 
 /* Getting the current date and formatting it to be used in the calendar. */
 const currentDate =
@@ -68,31 +70,11 @@ function Form() {
       zipCode: zipCode.value,
     };
 
-    console.log(newEmployee);
-
     //add new employee to store
     dispatch(addNewEmployee(newEmployee));
-
+    returnToTop();
     return setShowModal(true);
   }
-
-  /**
-   * It takes a list of objects and returns a list of options
-   * @param {list} array
-   * @returns The newlist is being returned.
-   */
-  const displayList = (list) => {
-    const newlist =
-      list.length > 0 &&
-      list.map((item, i) => {
-        return (
-          <option key={i} value={item.id}>
-            {item.name}
-          </option>
-        );
-      });
-    return newlist;
-  };
 
   /**
    * When the user clicks the button, scroll to the top of the page.
@@ -113,10 +95,8 @@ function Form() {
         <form action="#" id="create-employee">
           <label htmlFor="first-name">First Name</label>
           <input type="text" id="first-name" />
-
           <label htmlFor="last-name">Last Name</label>
           <input type="text" id="last-name" />
-
           <label htmlFor="date-of-birth">Date of Birth</label>
           <div className="calendar-input">
             <div
@@ -153,7 +133,6 @@ function Form() {
               />
             </div>
           </div>
-
           <label htmlFor="start-date">Start Date</label>
           <div className="calendar-input">
             <div
@@ -190,7 +169,6 @@ function Form() {
               />
             </div>
           </div>
-
           <fieldset>
             <legend>Address</legend>
 
@@ -201,25 +179,19 @@ function Form() {
             <input id="city" type="text" />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state">
-              {displayList(states)}
-            </select>
+            <DropdownList list={states} listId="state" />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            {displayList(departments)}
-          </select>
+          <DropdownList list={departments} listId="department" />
         </form>
 
         <button
           onClick={() => {
-            submitNewEmployee(data); // broken ?
-            returnToTop();
-            setShowModal(true);
+            submitNewEmployee(data);
           }}
           className="button"
         >

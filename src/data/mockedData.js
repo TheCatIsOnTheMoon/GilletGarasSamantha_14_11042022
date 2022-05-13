@@ -1,4 +1,4 @@
-// mocked fake data generated with the help of mockaroo.com
+//fake mocked data generated with the help of mockaroo.com
 export const data = [
   {
     id: 1,
