@@ -34,9 +34,9 @@ function addZero(num) {
 function Form() {
   // calendar states
   const [showcld_dateOfBirth, setShowcld_dateOfBirth] = useState(false);
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [dateOfBirth, setDateOfBirth] = useState();
   const [showcld_datestart, setShowcld_datestart] = useState(false);
-  const [datestart, setDateStart] = useState(new Date());
+  const [datestart, setDateStart] = useState();
   // modal states
   const [showModal, setShowModal] = useState(false);
 
@@ -124,7 +124,7 @@ function Form() {
                 value={
                   dateOfBirth?.getFullYear() +
                   '-' +
-                  addZero(dateOfBirth?.getMonth()) +
+                  addZero(dateOfBirth?.getMonth() + 1) +
                   '-' +
                   addZero(dateOfBirth?.getDate())
                 }
@@ -158,11 +158,11 @@ function Form() {
               <input
                 readOnly
                 value={
-                  dateOfBirth?.getFullYear() +
+                  datestart?.getFullYear() +
                   '-' +
-                  addZero(dateOfBirth?.getMonth()) +
+                  addZero(datestart?.getMonth() + 1) +
                   '-' +
-                  addZero(dateOfBirth?.getDate())
+                  addZero(datestart?.getDate())
                 }
                 id="start-date"
               />
