@@ -122,11 +122,11 @@ function Form() {
               <input
                 readOnly
                 value={
-                  addZero(dateOfBirth?.getDate()) +
+                  dateOfBirth?.getFullYear() +
                   '-' +
                   addZero(dateOfBirth?.getMonth()) +
                   '-' +
-                  dateOfBirth?.getFullYear()
+                  addZero(dateOfBirth?.getDate())
                 }
                 id="date-of-birth"
               />
@@ -158,11 +158,11 @@ function Form() {
               <input
                 readOnly
                 value={
-                  addZero(datestart?.getDate()) +
+                  dateOfBirth?.getFullYear() +
                   '-' +
-                  addZero(datestart?.getMonth()) +
+                  addZero(dateOfBirth?.getMonth()) +
                   '-' +
-                  datestart?.getFullYear()
+                  addZero(dateOfBirth?.getDate())
                 }
                 id="start-date"
               />
