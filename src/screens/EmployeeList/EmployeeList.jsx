@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // packages
-// import styledComponents from 'styled-components';
 import DataTable from 'react-data-table-component';
 
 /* Creating the table. */
@@ -54,19 +53,19 @@ const columns = [
   },
 ];
 
-// filter
-// const FilterComponent = ({ filterText, onFilter }) => (
-//   <>
-//     <input
-//       id="search"
-//       type="text"
-//       placeholder="Filter By Name"
-//       aria-label="Search Input"
-//       value={filterText}
-//       onChange={onFilter}
-//     />
-//   </>
-// );
+// filter;
+const FilterComponent = ({ filterText, onFilter }) => (
+  <>
+    <input
+      id="search"
+      type="text"
+      placeholder="Filter By Name"
+      aria-label="Search Input"
+      value={filterText}
+      onChange={onFilter}
+    />
+  </>
+);
 
 function EmployeeList() {
   const [filterText, setFilterText] = useState('');
@@ -75,27 +74,28 @@ function EmployeeList() {
   // get data from store
   const data = useSelector((state) => state.employees);
 
-  // const filteredData = data.filter(
-  //   (item) =>
-  //     item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
-  // );
+  const filteredData = data.filter(
+    (item) =>
+      item.lastName &&
+      item.lastName.toLowerCase().includes(filterText.toLowerCase())
+  );
 
-  // const subHeaderComponentMemo = useMemo(() => {
-  //   const handleClear = () => {
-  //     if (filteredData) {
-  //       setResetPagination(!resetPagination);
-  //       setFilterText('');
-  //     }
-  //   };
+  const subHeaderComponentMemo = useMemo(() => {
+    const handleClear = () => {
+      if (filteredData) {
+        setResetPagination(!resetPagination);
+        setFilterText('');
+      }
+    };
 
-  //   return (
-  //     <FilterComponent
-  //       onFilter={(e) => setFilterText(e.target.value)}
-  //       onClear={handleClear}
-  //       filterText={filterText}
-  //     />
-  //   );
-  // }, [filterText, resetPagination]);
+    return (
+      <FilterComponent
+        onFilter={(e) => setFilterText(e.target.value)}
+        onClear={handleClear}
+        filterText={filterText}
+      />
+    );
+  }, [filterText, resetPagination]);
 
   return (
     <div id="employee-div" className="container border-radius box-shadow">
@@ -106,11 +106,11 @@ function EmployeeList() {
       <div className="table">
         <DataTable
           columns={columns}
-          data={data}
+          data={filteredData}
           pagination
           paginationResetDefaultPage={resetPagination}
           subHeader
-          // subHeaderComponent={subHeaderComponentMemo}
+          subHeaderComponent={subHeaderComponentMemo}
           persistTableHead
         />
       </div>
